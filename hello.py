@@ -1,4 +1,4 @@
-def add(x, y):
+def add(x, y, z):
     """This is an add function"""
-    return x + y
-print(add(1, 1))
+    return x + y, z
+print(add(1, 1, 1))
