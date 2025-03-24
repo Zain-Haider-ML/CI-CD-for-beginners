@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
   - main  # Runs pipeline on push to 'main' branch
 
@@ -26,6 +21,16 @@ steps:
         choco install make -y
     displayName: 'Install Make'
 
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        $env:Path += ";C:\Program Files\GnuWin32\bin;C:\ProgramData\chocolatey\bin"
+        [System.Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
+        refreshenv
+        make --version  # Check if make is available
+    displayName: 'Verify Make Installation'
+
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'  # Use latest Python 3 version
@@ -38,5 +43,6 @@ steps:
     displayName: 'Install Dependencies'
 
   - script: |
+      set PATH=C:\ProgramData\chocolatey\bin;%PATH%
       make test
     displayName: 'Run Tests'
