@@ -6,8 +6,7 @@
 trigger:
   - main  # Runs pipeline on push to 'main' branch
 
-pool:
-  vmImage: 'ubuntu-latest'  # Use the latest Ubuntu VM
+pool: Newpool
 
 steps:
   - task: UsePythonVersion@0
