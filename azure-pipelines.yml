@@ -21,5 +21,10 @@ steps:
     displayName: 'Install Dependencies'
 
   - script: |
+      sudo apt-get update
+      sudo apt-get install -y make  # Install Make utility
+    displayName: 'Install Make'
+
+  - script: |
       make test
     displayName: 'Run Tests'
