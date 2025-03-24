@@ -19,11 +19,10 @@ steps:
       source venv/bin/activate
       pip install -r requirements.txt
     displayName: 'Install Dependencies'
-
+  
   - script: |
-      sudo apt-get update
-      sudo apt-get install -y make  # Install Make utility
-    displayName: 'Install Make'
+      choco install make
+    displayName: 'Install Make on Windows'
 
   - script: |
       make test
